@@ -1,0 +1,9 @@
+_target_: core.module.module.FaceVidSRTrainer
+defaults:
+  - _self_
+  - dataset: face_video_dataset
+  - model: gpen
+
+batch_size: 1
+num_workers: 4
+# +save_path: "./test"

@@ -1,0 +1,18 @@
+Trainer:
+  _target_: lightning.pytorch.Trainer
+  accelerator: gpu
+  devices: 1
+  precision: 32
+module:
+  _target_: core.module.module.FaceVidSRTrainer
+  batch_size: 1
+  num_workers: 4
+  dataset:
+    _target_: dataset.baseline.FaceVidDataset
+    image_size: 512
+    video_path: /workspace/zlatkd12/mok/zresults/inputs/512
+  model:
+    _target_: model.gpen.GPEN
+    device: cuda:1
+  save_path: ./test
+save_path: ''

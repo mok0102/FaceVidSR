@@ -1,0 +1,3 @@
+_target_: dataset.face_video_dataset.FaceVidDataset
+image_size: 512
+video_path : /workspace/zlatkd12/mok/zresults/inputs/512
