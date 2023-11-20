@@ -1,4 +1,0 @@
-- +save_path=
-- Trainer.devices=1
-- +module.save_path=./test
-- +module.model.device=cuda:1
