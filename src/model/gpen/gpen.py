@@ -9,8 +9,9 @@ import torchvision
 # import cv2
 
 class GPEN(nn.Module):
-    def __init__(self, device):
+    def __init__(self, save_path, device):
         super(GPEN, self).__init__()
+        self.save_path = save_path
         self.device = device
         
     def forward(self, video):

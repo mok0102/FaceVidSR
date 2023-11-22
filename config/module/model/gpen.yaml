@@ -1,1 +1,3 @@
 _target_: model.gpen.GPEN
+save_path: ./test
+device: 1

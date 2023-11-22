@@ -3,7 +3,7 @@ import lightning as pl
 from torch.utils.data import DataLoader, Dataset
 import os
 
-class FaceVidSRTrainer(pl.LightningModule):
+class GPENTrainer(pl.LightningModule):
     def __init__(self, 
                  dataset: dict,
                  model: torch.nn.Module,
