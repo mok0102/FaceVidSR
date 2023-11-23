@@ -1,4 +1,5 @@
 import torch
+from torch import optim, nn, utils, Tensor
 import lightning as pl
 from torch.utils.data import DataLoader, Dataset
 import os
@@ -23,5 +24,6 @@ class FaceVidSRTrainer(pl.LightningModule):
         frames = batch
         output = self.step(batch)
         
-        
-        
+    def configure_optimizers(self):
+        optimizer = optim.Adam(self.parameters(), lr=1e-3)
+        return optimizer

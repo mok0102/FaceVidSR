@@ -21,6 +21,8 @@ def main(cfg: DictConfig) -> None:
     cfg["Trainer"] = instantiate(cfg["Trainer"])
 
     cfg["Trainer"].predict(cfg["module"], cfg["module"].dataloader)
+    
+    # cfg["Trainer"].fit(cfg['module']['model'], cfg["module"].dataloader)
     print('It works.')
 
 if __name__ == "__main__":

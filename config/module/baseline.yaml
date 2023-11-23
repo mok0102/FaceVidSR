@@ -1,4 +1,4 @@
-_target_: core.module.module.FaceVidSRTrainer
+_target_: core.module.gpen_module.GPENTrainer
 defaults:
   - _self_
   - dataset: face_video_dataset
