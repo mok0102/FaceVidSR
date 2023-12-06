@@ -20,9 +20,9 @@ def main(cfg: DictConfig) -> None:
     cfg["module"] = instantiate(cfg["module"])
     cfg["Trainer"] = instantiate(cfg["Trainer"])
 
-    cfg["Trainer"].predict(cfg["module"], cfg["module"].dataloader)
+    # cfg["Trainer"].predict(cfg["module"], cfg["module"].dataloader)
     
-    # cfg["Trainer"].fit(cfg['module']['model'], cfg["module"].dataloader)
+    cfg["Trainer"].fit(cfg['module'])
     print('It works.')
 
 if __name__ == "__main__":

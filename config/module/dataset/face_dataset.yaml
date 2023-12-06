@@ -1,0 +1,5 @@
+_target_: dataset.face_dataset.FaceDataset
+image_size: 256
+img_path : /workspace/zlatkd12/mok/zresults/inputs/256
+noise_range: [0, 20]
+jpeg_range: [60, 100]

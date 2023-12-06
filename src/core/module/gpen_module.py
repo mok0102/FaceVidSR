@@ -10,39 +10,56 @@ import numpy as np
 class GPENTrainer(pl.LightningModule):
     def __init__(self, 
                  dataset: dict,
-                #  generator: torch.nn.Module,
-                #  discriminator: torch.nn.Module,
-                #  g_ema: torch.nn.Module,
                  model: torch.nn.Module,
+                #  optimizer: torch.nn.Module,
                  batch_size: int = 1,
                  num_workers: int = 1,
+                 lr: float = 0.0002,
+            b1: float = 0.5,
+            b2: float = 0.999,
                  save_path: str = './test')-> None:
         super().__init__()
         self.dataset = dataset
-        self.dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+        self.train_dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+        self.test_dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+
+        self.dataloder = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+
         
         self.generator = model.generator
         self.discriminator = model.discriminator
         self.g_ema = model.g_ema
         
+        self.lr = lr
+        self.b1 = b1
+        self.b2 = b2
         
-    def step(self, video):
-        for i in range(video.shape[1]):
-            frame = video[:, i, ::]
-            output = self.generator(frame)
+        self.automatic_optimization=False
+        
+        
+    def step(self, img):
+        # for i in range(video.shape[1]):
+        #     frame = video[:, i, ::]
+        #     output = self.generator(frame)
+        output = self.generator(img) #### video trainer 따로 만들 것. 모든 모델은 같은 trainer
         return output
     
+    def configure_optimizers(self):
+        opt_g = torch.optim.Adam(self.generator.parameters(), lr=self.lr, betas=(self.b1, self.b2))
+        opt_d = torch.optim.Adam(self.discriminator.parameters(), lr=self.lr, betas=(self.b1, self.b2))
+        return [opt_g, opt_d], []
+    
     def predict_step(self, batch, batch_idx) -> None:
-        degraded_frames, frames = batch
-        output = self.step(degraded_frames)
+        degraded_img, img = batch
+        output = self.step(img)
     
     def training_step(self, batch, batch_idx) -> None:
-        degraded_frames, frames = batch
+        degraded_img, img = batch
         
         self.requires_grad(self.generator, False)
         self.requires_grad(self.discriminator, True)
         
-        output = self.step(degraded_frames)
+        output = self.step(batch)
         
         # fake_img, _ = self.generator(degraded_frames)
         # fake_pred = self.discriminator(fake_img)
