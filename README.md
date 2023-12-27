@@ -5,3 +5,6 @@ original repo from https://github.com/yangxy/GPEN.
 
 # CodeFormer
 original repo from https://github.com/sczhou/CodeFormer
+
+# DiffBIR
+original repo from https://github.com/XPixelGroup/DiffBIR
