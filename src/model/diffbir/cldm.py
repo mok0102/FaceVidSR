@@ -7,6 +7,11 @@ import torch
 import torch as th
 import torch.nn as nn
 
+import os
+import sys
+# sys.path.append(os.path.realpath('../../external/DiffBIR'))
+sys.path.append(os.path.realpath('/workspace/zlatkd12/mok/FaceVidSR/src/external/DiffBIR'))
+
 from ldm.modules.diffusionmodules.util import (
     conv_nd,
     linear,
@@ -19,7 +24,8 @@ from ldm.models.diffusion.ddpm import LatentDiffusion
 from ldm.util import log_txt_as_img, exists, instantiate_from_config
 from ldm.modules.distributions.distributions import DiagonalGaussianDistribution
 from utils.common import frozen_module
-from .spaced_sampler import SpacedSampler
+
+from model.spaced_sampler import SpacedSampler
 
 
 class ControlledUnetModel(UNetModel):

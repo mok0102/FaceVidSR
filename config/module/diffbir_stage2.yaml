@@ -1,4 +1,4 @@
-_target_: core.model.diffbir.cldm.ControlLDM
+target: model.diffbir.cldm.ControlLDM
 params:
   linear_start: 0.00085
   linear_end: 0.0120
@@ -15,12 +15,12 @@ params:
   monitor: val/loss_simple_ema
   scale_factor: 0.18215
   use_ema: False
-  
+
   sd_locked: True
   only_mid_control: False
   # Learning rate.
   learning_rate: 1e-4
-  
+
   control_stage_config:
     target: model.cldm.ControlNet
     params:
@@ -87,25 +87,43 @@ params:
       freeze: True
       layer: "penultimate"
 
-  preprocess_config:
-    _target_: model.diffbir.swinir.SwinIR
-    img_size: 256
-    patch_size: 1
-    in_chans: 3
-    embed_dim: 180
-    depths: [6, 6, 6, 6, 6, 6, 6, 6]
-    num_heads: [6, 6, 6, 6, 6, 6, 6, 6]
-    window_size: 8
-    mlp_ratio: 2
-    sf: 8
-    img_range: 1.0
-    upsampler: "nearest+conv"
-    resi_connection: "1conv"
-    unshuffle: True
-    unshuffle_scale: 8
+  # preprocess_config:
+  #   _target_: model.diffbir.swinir.SwinIR
+  #   img_size: 256
+  #   patch_size: 1
+  #   in_chans: 3
+  #   embed_dim: 180
+  #   depths: [6, 6, 6, 6, 6, 6, 6, 6]
+  #   num_heads: [6, 6, 6, 6, 6, 6, 6, 6]
+  #   window_size: 8
+  #   mlp_ratio: 2
+  #   sf: 8
+  #   img_range: 1.0
+  #   upsampler: "nearest+conv"
+  #   resi_connection: "1conv"
+  #   unshuffle: True
+  #   unshuffle_scale: 8
 
-    hq_key: jpg
-    lq_key: hint
-    # Learning rate.
-    learning_rate: 1e-4
-    weight_decay: 0
+  #   hq_key: jpg
+  #   lq_key: hint
+  #   # Learning rate.
+  #   learning_rate: 1e-4
+  #   weight_decay: 0
+
+  preprocess_config:
+      target: model.diffbir.swinir_trainer.SwinIR
+      params:
+        img_size: 64
+        patch_size: 1
+        in_chans: 3
+        embed_dim: 180
+        depths: [6, 6, 6, 6, 6, 6, 6, 6]
+        num_heads: [6, 6, 6, 6, 6, 6, 6, 6]
+        window_size: 8
+        mlp_ratio: 2
+        sf: 8
+        img_range: 1.0
+        upsampler: "nearest+conv"
+        resi_connection: "1conv"
+        unshuffle: True
+        unshuffle_scale: 8
