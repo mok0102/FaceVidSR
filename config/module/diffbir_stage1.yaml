@@ -1,0 +1,15 @@
+_target_: core.module.swinir_module.SwinIRTrainer
+defaults:
+  - _self_
+  - dataset: face_dataset
+  - model: swinir
+  - loss: mse
+
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 1.0e-2
+  weight_decay: 0
+
+
+batch_size: 2
+num_workers: 4

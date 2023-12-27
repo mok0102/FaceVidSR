@@ -4,7 +4,7 @@ hydra:
 
 defaults:
   - _self_
-  - module: baseline
+  - module: gpen
 
 Trainer:
   _target_: lightning.pytorch.Trainer

@@ -6,7 +6,7 @@ import os
 
 from einops import rearrange
 
-class BasicTrainer(pl.LightningModule):
+class SwinIRTrainer(pl.LightningModule):
     def __init__(self, 
                  dataset: dict,
                  model: torch.nn.Module,

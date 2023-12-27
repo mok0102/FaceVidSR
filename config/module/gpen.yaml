@@ -1,0 +1,17 @@
+_target_: core.module.gpen_module.GPENTrainer
+defaults:
+  - _self_
+  - dataset: face_dataset
+  - model: gpen
+  - loss: gpen
+
+optimizer_g:
+  _target_: torch.optim.Adam
+  lr: 1.0e-2
+
+optimizer_d:
+  _target_: torch.optim.Adam
+  lr: 1.0e-3
+
+batch_size: 2
+num_workers: 4

@@ -28,5 +28,5 @@ class GPEN(nn.Module):
     ).to(self.device)
         
         
-    # def forward(self, img):
-    #     return img
+    def forward(self, img):
+        return img

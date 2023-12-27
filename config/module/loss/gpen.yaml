@@ -1,0 +1,2 @@
+_target_: loss.gpen.GPENLoss
+device: 1

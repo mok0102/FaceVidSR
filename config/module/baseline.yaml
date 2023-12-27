@@ -1,8 +1,0 @@
-_target_: core.module.gpen_module.GPENTrainer
-defaults:
-  - _self_
-  - dataset: face_dataset
-  - model: gpen
-
-batch_size: 1
-num_workers: 4

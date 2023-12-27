@@ -11,6 +11,7 @@ from typing import Sequence, Dict, Union
 
 import sys
 sys.path.append(os.path.realpath('./src'))
+sys.path.append(os.path.realpath('../'))
 from utils.degradation import random_mixed_kernels, random_add_gaussian_noise, random_add_jpg_compression
 
 class FaceDataset(Dataset):
@@ -64,9 +65,13 @@ class FaceDataset(Dataset):
         img = img.permute(2, 0, 1)#.flip(0) # BGR->RGB
         img_lq = img_lq.permute(2, 0, 1)#.flip(0) # BGR->RGB
         
-        print(img.shape, img_lq.shape)
+        # print(img.shape, img_lq.shape)
         
         return img_lq, img
     
     def __len__(self):
         return len(self.img)
+    
+if __name__=='__main__':
+    dataset = FaceDataset([0, 20], [60, 100], img_path='/workspace/zlatkd12/mok/zresults/inputs/256', image_size=256)
+    print(len(dataset))
