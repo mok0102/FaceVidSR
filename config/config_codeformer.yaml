@@ -4,7 +4,7 @@ hydra:
 
 defaults:
   - _self_
-  - module: codeformer
+  - module: codeformer_stage3
 
 Trainer:
   _target_: lightning.pytorch.Trainer

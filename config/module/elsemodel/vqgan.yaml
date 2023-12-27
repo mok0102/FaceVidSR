@@ -1,0 +1,6 @@
+_target_: model.codeformer.vqgan.VQAutoEncoder
+img_size: 512
+nf: 64
+ch_mult: [1, 2, 2, 4, 4, 8]
+quantizer: 'nearest'
+codebook_size: 1024

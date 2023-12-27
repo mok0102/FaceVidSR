@@ -10,7 +10,7 @@ from utils.util import instantiate_dict
 
 # seed_everything()
 
-@hydra.main(version_base=None, config_path="../../config", config_name="config_diffbir")
+@hydra.main(version_base=None, config_path="../../config", config_name="config_codeformer")
 def main(cfg: DictConfig) -> None:
     print(OmegaConf.to_yaml(cfg))
     cfg = OmegaConf.to_object(cfg)

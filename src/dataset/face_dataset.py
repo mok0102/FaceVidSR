@@ -50,6 +50,9 @@ class FaceDataset(Dataset):
             
         img_lq = cv2.resize(img_lq, (self.image_size, self.image_size), interpolation=cv2.INTER_LINEAR)  
         
+        ###### codeformer 512만 가능
+        img_lq = cv2.resize(img_lq, (512, 512), interpolation=cv2.INTER_LINEAR)  
+        img = cv2.resize(img, (512, 512), interpolation=cv2.INTER_LINEAR)  
         
         if self.transform:
             img_lq= self.transform(img_lq)
@@ -66,6 +69,7 @@ class FaceDataset(Dataset):
         img_lq = img_lq.permute(2, 0, 1)#.flip(0) # BGR->RGB
         
         # print(img.shape, img_lq.shape)
+        
         
         return img_lq, img
     

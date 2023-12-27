@@ -6,7 +6,7 @@ defaults:
   - elsemodel: vqgan
   - loss: ce
 
-w: 0
+w: 1
 
 optimizer:
   _target_: torch.optim.AdamW
